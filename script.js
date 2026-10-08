@@ -24,16 +24,11 @@ document.body.addEventListener("mousemove", (event) => {
 
 // Code With Chaie
 
-// document.querySelector("#owl").onclick = () => alert("owl clicked");
+document.querySelector("#owl").onclick = () => alert("owl clicked");
 
 // attachEvent() JavaScript ka purana event-handling method hai. Iska kaam kisi HTML element ke saath event attach karna tha, jaise click.
 
 // jQuery - on
-
-// type, timestamp, defaultPrevented
-// target, toElement, srcElement, currentTarget,
-// clientX, clientY, screenX, screenY
-// altkey, ctrlkey, shiftkey, keyCode
 
 document.querySelector("#images").addEventListener(
   "click",
@@ -50,10 +45,29 @@ document.querySelector("#owl").addEventListener(
   "click",
   (event) => {
     console.log("owl clicked");
-    event.stopPropagation(); // agr parent me koe event lga hoga usko bnd krdega
+    event.stopPropagation(); // Ye event ko parent elements tak propagate hone se rokta hai.
+
+    event.stopImmediatePropagation(); // 1. Event ko parent tak jaane se rokta hai
+    // 2. Same element par attached doosre event listeners ko bhi rok deta hai
   },
   false,
 );
+
+// stopPropagation()
+//        ↓
+// Parent/ancestor ko event milne se rokta hai
+//        ↓
+// Same element ke baaki listeners chal sakte hain
+
+// stopImmediatePropagation()
+//        ↓
+// Parent/ancestor ko event milne se rokta hai
+//        +
+// Same element ke baaki listeners bhi rokta hai
+
+// Propagation = parent ko rokna
+
+// Immediate propagation = parent + same element ke remaining listeners ko rokna.
 
 document.querySelector("#google").addEventListener(
   "click",
@@ -78,3 +92,8 @@ document.querySelector("#images").addEventListener(
   },
   false,
 );
+
+// type, timestamp, defaultPrevented
+// target, toElement, srcElement, currentTarget,
+// clientX, clientY, screenX, screenY
+// altkey, ctrlkey, shiftkey, keyCode
